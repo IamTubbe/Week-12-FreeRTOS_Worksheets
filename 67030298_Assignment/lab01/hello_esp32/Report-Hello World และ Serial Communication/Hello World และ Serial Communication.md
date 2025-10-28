@@ -158,6 +158,8 @@ void app_main(void)
 idf_component_register(SRCS "logging_demo.c"
                        INCLUDE_DIRS ".")
 ```
+![alt text](<ใช้งาน ESP Logging.png>)
+---
 
 ### Step 3: การปรับ Log Level (5 นาที)
 
@@ -174,6 +176,9 @@ export ESP_LOG_LEVEL=DEBUG
 idf.py build flash monitor
 ```
 
+![alt text](<การปรับ Log Level.png>)
+---
+
 **การตั้งค่า Log Level ในโค้ด:**
 ```c
 // Set log level for specific tag
@@ -182,6 +187,9 @@ esp_log_level_set("LOGGING_DEMO", ESP_LOG_DEBUG);
 // Set global log level
 esp_log_level_set("*", ESP_LOG_INFO);
 ```
+
+![alt text](<การตั้งค่า Log Level ในโค้ด.png>)
+---
 
 ## แบบฝึกหัด
 
@@ -271,6 +279,10 @@ void error_handling_demo(void)
     }
 }
 ```
+### - Excersice 1-3 : ผลลัพธ์
+
+![alt text](<Exercise1-3.png>)
+---
 
 ## การใช้งาน Serial Monitor ขั้นสูง
 
@@ -298,22 +310,30 @@ idf.py monitor > output.log 2>&1
 idf.py monitor | tee output.log
 ```
 
+![alt text](<การบันทึก Log.png>)
+
 ## Checklist การทำงาน
 
-- [ ] Flash และ Monitor สำเร็จ
-- [ ] เห็น Log messages ต่างๆ
-- [ ] ทดสอบ Log levels ต่างๆ
-- [ ] ใช้ formatted logging ได้
-- [ ] ปรับ Log level ผ่าน menuconfig
-- [ ] ทำแบบฝึกหัดครบ
+- [ ✅ ] Flash และ Monitor สำเร็จ
+- [ ✅ ] เห็น Log messages ต่างๆ
+- [ ✅ ] ทดสอบ Log levels ต่างๆ
+- [ ✅ ] ใช้ formatted logging ได้
+- [ ✅ ] ปรับ Log level ผ่าน menuconfig
+- [ ✅ ] ทำแบบฝึกหัดครบ
 
 ## คำถามทบทวน
 
 1. ความแตกต่างระหว่าง `printf()` และ `ESP_LOGI()` คืออะไร?
+    - printf() แค่พิมพ์ข้อมูลออกทาง console
+    - ESP_LOGI() เป็นระบบ Logging ของ ESP-IDF → เลือก log level ได้, มี tag, สามารถเปิด/ปิด
 2. Log level ไหนที่จะแสดงใน default configuration?
+    - โดยปกติคือ INFO (จะแสดง: Error, Warning, Info)
 3. การใช้ `ESP_ERROR_CHECK()` มีประโยชน์อย่างไร?
+    - ตรวจผลลัพธ์ของฟังก์ชัน ถ้า error จะพิมพ์ข้อความ และ reset/abort ช่วย debug ง่ายขึ้น
 4. คำสั่งใดในการออกจาก Monitor mode?
+    - กด Ctrl + ]
 5. การตั้งค่า Log level สำหรับ tag เฉพาะทำอย่างไร?
+    - ใช้คำสั่งใน code: esp_log_level_set("TAG", ESP_LOG_INFO);
 
 ## บทสรุป
 
