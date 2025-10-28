@@ -1,0 +1,46 @@
+# ESP-IDF build output
+build/
+dist/
+
+# Configuration files (อาจจะต้องการเก็บไว้ใน Git ถ้าต้องการแชร์ config แต่ให้ระวังข้อมูล sensitive)
+# sdkconfig
+sdkconfig.old
+sdkconfig.bak
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+
+# IDE/Editor specific files
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Operating System specific files
+.DS_Store
+Thumbs.db
+
+# Other generated files (มักอยู่ใน build/ อยู่แล้ว แต่ใส่ดักไว้)
+*.o
+*.d
+*.elf
+*.map
+*.bin
+*.a
+
+# Log files
+*.log
+
+# Dependency directories (ถ้าใช้ package manager อื่นๆ)
+# components/*/managed_components/
+# components/bt/controller/lib_esp32*/
+# components/esp_phy/lib/
+# components/esp_wifi/lib/
+# components/wpa_supplicant/lib/
+
+# CMake temporary files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
