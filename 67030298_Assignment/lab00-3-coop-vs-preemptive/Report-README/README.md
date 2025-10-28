@@ -288,22 +288,27 @@ void app_main(void)
 ## การทดสอบและเปรียบเทียบ
 
 ### การทดสอบ Cooperative System
-1. Build และ flash โปรแกรมโดย uncomment `test_cooperative_multitasking()`
-2. กดปุ่มหลายครั้งและสังเกตเวลาตอบสนอง
-3. บันทึกเวลาตอบสนองสูงสุด
+- Build และ flash โปรแกรมโดย uncomment `test_cooperative_multitasking()` / กดปุ่มหลายครั้งและสังเกตเวลาตอบสนอง / บันทึกเวลาตอบสนองสูงสุด
+
+    ![alt text](<ทดสอบ Cooperative System.png>)
 
 ### การทดสอบ Preemptive System
-1. แก้ไขโค้ดโดย uncomment `test_preemptive_multitasking()`
-2. Build และ flash ใหม่
-3. กดปุ่มหลายครั้งและเปรียบเทียบเวลาตอบสนอง
+- แก้ไขโค้ดโดย uncomment `test_preemptive_multitasking()` / Build และ flash ใหม่ / กดปุ่มหลายครั้งและเปรียบเทียบเวลาตอบสนอง
+
+    ![alt text](<ทดสอบ Preemptive System.png>)
 
 ## คำถามสำหรับวิเคราะห์
 
 1. ระบบไหนมีเวลาตอบสนองดีกว่า? เพราะอะไร?
+    - Preemptive ดีกว่ามาก เพราะ Task สำคัญ (Priority สูง) สามารถขัดจังหวะ Task อื่นได้ทันที ไม่ต้องรอ
 2. ข้อดีของ Cooperative Multitasking คืออะไร?
+    - ง่ายกว่า และใช้ ทรัพยากรน้อยกว่า (Overhead ต่ำ)
 3. ข้อเสียของ Cooperative Multitasking คืออะไร?
+    - ตอบสนองไม่แน่นอน Task หนึ่งอาจทำให้ทั้งระบบช้าหรือค้างได้ ถ้าไม่ยอมสละ CPU (yield)
 4. ในสถานการณ์ใดที่ Cooperative จะดีกว่า Preemptive?
+    - ระบบ ง่ายๆ ที่ ไม่ต้องการ Real-time เข้มงวด และมี ทรัพยากรจำกัด มากๆ
 5. เหตุใด Preemptive จึงเหมาะสำหรับ Real-time systems?
+    - เพราะ รับประกันเวลาตอบสนอง ได้ Task สำคัญ (Priority สูง) จะได้ทำงานก่อนเสมอ
 
 ## ผลการทดลองที่คาดหวัง
 
