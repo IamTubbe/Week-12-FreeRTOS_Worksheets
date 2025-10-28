@@ -187,6 +187,9 @@ void app_main(void)
 }
 ```
 
+![alt text](<Task พื้นฐาน.png>)
+---
+
 ### Step 2: Task Management (15 นาที)
 
 เพิ่มฟีเจอร์การจัดการ Task:
@@ -259,6 +262,9 @@ BaseType_t result4 = xTaskCreate(
 );
 ```
 
+![alt text](<Task Management.png>)
+---
+
 ### Step 3: Task Priorities และ Statistics (15 นาที)
 
 ```c
@@ -329,6 +335,9 @@ void runtime_stats_task(void *pvParameters)
 }
 ```
 
+![alt text](<Task Priorities และ Statistics.png>)
+---
+
 ## แบบฝึกหัด
 
 ### Exercise 1: Task Self-Deletion
@@ -353,6 +362,8 @@ void temporary_task(void *pvParameters)
 static int temp_duration = 10;
 xTaskCreate(temporary_task, "TempTask", 2048, &temp_duration, 1, NULL);
 ```
+
+![alt text](<Task Self-Deletion.png>)
 
 ### Exercise 2: Task Communication (Preview)
 
@@ -383,6 +394,8 @@ void consumer_task(void *pvParameters)
 }
 ```
 
+![alt text](<Task Communication.png>)
+
 ## การ Debug Tasks
 
 ### 1. ใช้ Task List
@@ -407,20 +420,27 @@ ESP_LOGI(TAG, "Task state: %s", state_names[state]);
 
 ## Checklist การทำงาน
 
-- [ ] สร้าง Task พื้นฐานสำเร็จ
-- [ ] เข้าใจ Task parameters และ return values
-- [ ] ทดสอบ Task priorities
-- [ ] ใช้ Task management APIs (suspend/resume)
-- [ ] แสดง runtime statistics
-- [ ] ทำแบบฝึกหัดครบ
+- [ ✅ ] สร้าง Task พื้นฐานสำเร็จ
+- [ ✅ ] เข้าใจ Task parameters และ return values
+- [ ✅ ] ทดสอบ Task priorities
+- [ ✅ ] ใช้ Task management APIs (suspend/resume)
+- [ ✅ ] แสดง runtime statistics
+- [ ✅ ] ทำแบบฝึกหัดครบ
 
 ## คำถามทบทวน
 
 1. เหตุใด Task function ต้องมี infinite loop?
+    - เพราะ Task ต้องทำงานต่อเนื่องภายใต้ FreeRTOS ถ้าออกจากฟังก์ชันจะถือว่าจบ Task และถูกลบไปทันที
 2. ความหมายของ stack size ใน xTaskCreate() คืออะไร?
+    - คือขนาดหน่วยความจำสำหรับเก็บตัวแปรของ Task นั้น ใช้เป็น stack เฉพาะของ Task
 3. ความแตกต่างระหว่าง vTaskDelay() และ vTaskDelayUntil()?
+    - vTaskDelay() = หน่วงตามเวลาปัจจุบัน → อาจเกิดการ “ลื่นไถล” ของ timing ได้
+    - vTaskDelayUntil() = หน่วงแบบอ้างอิงเวลาเดิม → คงความแม่นยำของรอบเวลา (Periodic task)
 4. การใช้ vTaskDelete(NULL) vs vTaskDelete(handle) ต่างกันอย่างไร?
+    - vTaskDelete(NULL) → ลบ Task ปัจจุบัน
+    - vTaskDelete(handle) → ลบ Task อื่นที่ระบุด้วย handle
 5. Priority 0 กับ Priority 24 อันไหนสูงกว่า?
+    - Priority 24 สูงกว่า (ตัวเลขยิ่งมาก → ความสำคัญของ Task ยิ่งสูง)
 
 ## บทสรุป
 
