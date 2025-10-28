@@ -120,6 +120,10 @@ build/
 └── flash_args              # Flash arguments
 ```
 
+- **ผลลัพธ์**
+
+![alt text](<Build โปรเจกต์ hello_esp32.png>)
+
 ## การแก้ไขปัญหาที่อาจเกิดขึ้น
 
 ### ปัญหา 1: ESP-IDF not found
@@ -168,6 +172,9 @@ void app_main(void)
 }
 ```
 
+![alt text](<Exercise 1.png>)
+---
+
 ### Exercise 2: เพิ่ม Build Information
 สร้างไฟล์ `main/build_info.h`:
 
@@ -207,6 +214,9 @@ void app_main(void)
 }
 ```
 
+![alt text](<Exercise 2.png>)
+---
+
 ### Exercise 3: การ Build แบบ Verbose
 ```bash
 # Build with verbose output
@@ -219,21 +229,30 @@ idf.py build
 
 ## Checklist การทำงาน
 
-- [ ] ตรวจสอบ ESP-IDF environment สำเร็จ
-- [ ] สร้างโปรเจกต์ใหม่ได้
-- [ ] เข้าใจโครงสร้างโปรเจกต์
-- [ ] Build โปรเจกต์สำเร็จ
-- [ ] แก้ไขโค้ดและ build ใหม่ได้
-- [ ] เข้าใจไฟล์ CMakeLists.txt
-- [ ] ทำแบบฝึกหัดครบ
+- [ ✅ ] ตรวจสอบ ESP-IDF environment สำเร็จ
+- [ ✅ ] สร้างโปรเจกต์ใหม่ได้
+- [ ✅ ] เข้าใจโครงสร้างโปรเจกต์
+- [ ✅ ] Build โปรเจกต์สำเร็จ
+- [ ✅ ] แก้ไขโค้ดและ build ใหม่ได้
+- [ ✅ ] เข้าใจไฟล์ CMakeLists.txt
+- [ ✅ ] ทำแบบฝึกหัดครบ
 
-## คำถามทบทวหน
+## คำถามทบทวน
 
 1. ไฟล์ใดบ้างที่จำเป็นสำหรับโปรเจกต์ ESP-IDF ขั้นต่ำ?
+    - main/main.c
+    - CMakeLists.txt (ใน root และในโฟลเดอร์ main)
+    - ไฟล์ config ที่สร้างโดย ESP-IDF เช่น sdkconfig
 2. ความแตกต่างระหว่าง `hello_esp32.bin` และ `hello_esp32.elf` คืออะไร?
+    - .elf → เป็นไฟล์สำหรับ Debug มี symbol, ข้อมูลแผนผังหน่วยความจำ
+    - .bin → เป็นไฟล์ binary ที่พร้อมแฟลชลงชิปจริง
 3. คำสั่ง `idf.py set-target` ทำอะไร?
+    - ตั้งค่าเป้าหมายบอร์ด เช่น esp32, esp32c3 (ปรับ toolchain และ config ให้ถูกต้อง)
 4. โฟลเดอร์ `build/` มีไฟล์อะไรบ้าง?
+    - ผลลัพธ์การคอมไพล์ทั้งหมด เช่น .bin, .elf, firmware image, ไฟล์ temporary ระหว่าง build
 5. การใช้ `vTaskDelay()` แทน `delay()` มีความสำคัญอย่างไร?
+    - vTaskDelay() ปล่อยให้ FreeRTOS scheduler จัดการเวลา → ไม่ block CPU
+    - delay() (แบบ Arduino) จะ block ทำให้ task อื่นทำงานไม่ได้
 
 ## บทสรุป
 
