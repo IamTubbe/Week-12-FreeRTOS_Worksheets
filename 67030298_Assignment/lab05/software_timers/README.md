@@ -354,6 +354,8 @@ void app_main(void) {
    - LED_STATUS: กะพริบยาวทุก 5 วินาที
    - LED_ONESHOT: กะพริบ 5 ครั้งเร็วเมื่อ one-shot timer ทำงาน
 
+![alt text](<ทดลองที่ 1.png>)
+---
 ### ทดลองที่ 2: ปรับ Timer Configuration
 แก้ไขใน `menuconfig`:
 ```
@@ -361,6 +363,8 @@ CONFIG_FREERTOS_TIMER_TASK_PRIORITY=1  // ลด priority
 CONFIG_FREERTOS_TIMER_QUEUE_LENGTH=5   // ลดขนาด queue
 ```
 
+![alt text](<ทดลองที่ 2.png>)
+---
 ### ทดลองที่ 3: เพิ่ม Timer Load
 เพิ่ม timers เพิ่มเติม:
 ```c
@@ -372,14 +376,16 @@ for (int i = 0; i < 10; i++) {
 }
 ```
 
+![alt text](<ทดลองที่ 3.png>)
+
 ## 📋 สรุปผลการทดลอง
 
 ### สิ่งที่เรียนรู้:
-- [ ] การสร้างและจัดการ Software Timers
-- [ ] One-shot vs Auto-reload timers
-- [ ] Timer callbacks และ context
-- [ ] Dynamic timer creation/deletion
-- [ ] Timer Service Task behavior
+- [✅] การสร้างและจัดการ Software Timers
+- [✅] One-shot vs Auto-reload timers
+- [✅] Timer callbacks และ context
+- [✅] Dynamic timer creation/deletion
+- [✅] Timer Service Task behavior
 
 ### APIs ที่ใช้:
 - `xTimerCreate()` - สร้าง timer
@@ -396,6 +402,10 @@ for (int i = 0; i < 10; i++) {
 3. **Error Handling**: จัดการ timer failures
 4. **Complex Scheduling**: สร้าง scheduling patterns
 5. **Resource Management**: จัดการ timer resources
+
+    ### - **รวมความท้าทายในภาพเดียว**
+
+![alt text](<ความท้าทายเพิ่มเติม.png>)
 
 ## 📚 เอกสารอ้างอิง
 
