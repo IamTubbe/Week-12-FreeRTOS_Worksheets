@@ -200,6 +200,8 @@ void app_main(void)
     ESP_LOGI(TAG, "Watch LEDs: GPIO2=High, GPIO4=Med, GPIO5=Low priority");
 }
 ```
+![alt text](<Basic Priority Demonstration.png>)
+---
 
 ### Step 2: Round-Robin Scheduling (15 นาที)
 
@@ -270,6 +272,9 @@ xTaskCreate(equal_priority_task2, "Equal2", 2048, NULL, 2, NULL);
 xTaskCreate(equal_priority_task3, "Equal3", 2048, NULL, 2, NULL);
 ```
 
+![alt text](<Round-Robin Scheduling.png>)
+---
+
 ### Step 3: Priority Inversion Demo (10 นาที)
 
 ```c
@@ -314,6 +319,7 @@ void priority_inversion_low(void *pvParameters)
     }
 }
 ```
+![alt text](<Priority Inversion Demo.png>)
 
 ## การทดสอบและวิเคราะห์
 
@@ -355,6 +361,9 @@ void dynamic_priority_demo(void *pvParameters)
 }
 ```
 
+![alt text](<เปลี่ยน Priority แบบ Dynamic.png>)
+---
+
 ### Exercise 2: Task Affinity (ESP32 Dual-Core)
 
 ```c
@@ -363,13 +372,23 @@ xTaskCreatePinnedToCore(high_priority_task, "HighPrio", 3072, NULL, 5, NULL, 0);
 xTaskCreatePinnedToCore(low_priority_task, "LowPrio", 3072, NULL, 1, NULL, 1);   // Core 1
 ```
 
+![alt text](<Task Affinity (ESP32 Dual-Core).png>)
+
 ## คำถามสำหรับวิเคราะห์
 
 1. Priority ไหนทำงานมากที่สุด? เพราะอะไร?
+    - Priority สูงสุด ได้ CPU มากที่สุด เพราะมี preemptive scheduling ตัวที่ priority สูงจะวิ่งก่อนเสมอ
 2. เกิด Priority Inversion หรือไม่? จะแก้ไขได้อย่างไร?
+    - เกิดได้ หาก task priority ต่ำ ถือ resource ก่อน แล้ว task priority สูงต้องรอ
+    - วิธีแก้: Priority Inheritance หรือใช้ Mutex ที่รองรับ inheritance
 3. Tasks ที่มี priority เดียวกันทำงานอย่างไร?
+    - ใช้ Round-Robin scheduling สลับกันรันคนละ time slice
 4. การเปลี่ยน Priority แบบ dynamic ส่งผลอย่างไร?
+    - ทำให้ task ถูก เลื่อนลำดับความสำคัญได้ทันที
+    - ช่วยแก้ deadlock/performance แต่ถ้าปรับบ่อยเกินอาจ เกิด scheduling overhead
 5. CPU utilization ของแต่ละ priority เป็นอย่างไร?
+    - งานที่ priority สูง ใช้ CPU มากกว่า
+    - ถ้ามีงาน priority สูงวิ่งตลอด → งาน priority ต่ำแทบไม่ได้ CPU เลย (starvation)
 
 ## ผลการทดลองที่คาดหวัง
 
