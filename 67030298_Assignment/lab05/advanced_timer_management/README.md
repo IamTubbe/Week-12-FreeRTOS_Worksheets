@@ -630,6 +630,8 @@ void app_main(void) {
 }
 ```
 
+![alt text](<Advanced Timer Management.png>)
+
 ## 🧪 การทดลอง
 
 ### ทดลองที่ 1: Timer Pool Management
@@ -637,20 +639,42 @@ void app_main(void) {
 2. ตรวจสอบ Pool Utilization
 3. ทดสอบการจัดการ Dynamic Timers
 
+    - สรุปผล:
+        - มีการสร้าง Timer ทั้งหมด 10 ตัว
+        - Dynamic Timers ใช้งาน 5/10 ตัว
+        - Active Timers = 0 ตลอดการทดลอง (ไม่มีการทำงานค้างหรือ Timer zombie)
+        - Pool Utilization = 0% แสดงว่าทรัพยากรถูกจัดการได้สมบูรณ์และคืนสภาพหลังใช้งานครบถ้วน
+
 ### ทดลองที่ 2: Performance Analysis
 1. สังเกต Callback Duration Statistics  
 2. วิเคราะห์ Timer Accuracy
 3. ตรวจสอบ Performance Warnings
+
+    - สรุปผล:
+        - ค่าเฉลี่ยระยะเวลา Callback: 46 μs
+        - ค่าสูงสุด: 81 μs, ค่าต่ำสุด: 17 μs
+        - Timer Accuracy: 4.0% (4/100)
+        - ไม่มี Callback Overrun หรือ Command Failure
 
 ### ทดลองที่ 3: Stress Testing
 1. รัน Stress Test กับ Timer จำนวนมาก
 2. สังเกต System Performance ภายใต้ Load
 3. ตรวจสอบ Memory Usage และ Health Metrics
 
+    - สรุปผล:
+        - ไม่มี Overrun, Failure หรือ Error เกิดขึ้น
+        - Free Heap คงที่ = 298,732 bytes ตลอดการทดลอง
+        - ระบบคงสถานะปกติ ไม่มีการสูญเสียประสิทธิภาพหรือการ Hang
+
 ### ทดลองที่ 4: Health Monitoring
 1. สังเกต Health Reports
 2. ตรวจสอบ Error Conditions
 3. วิเคราะห์ System Recovery
+
+    - สรุปผล:
+        - Health Monitor รายงานทุก ~1 วินาที
+        - ตัวชี้วัดคงที่ เช่น Active Timers = 0/0, Dynamic Timers = 5/10
+        - ไม่มี Error หรือ Failed Creation ตลอดการทำงาน
 
 ## 📊 การวิเคราะห์ผลขั้นสูง
 
@@ -697,6 +721,10 @@ Expected Performance:
 - ปรับ Timer periods อัตโนมัติ
 - เพิ่มประสิทธิภาพตาม Load
 - เรียนรู้ Usage patterns
+
+    ### - **รวม Challenge ในภาพเดียว**
+
+![alt text](<Challenge.png>)
 
 ## 💡 Production Best Practices
 
@@ -776,22 +804,22 @@ void comprehensive_health_check(void) {
 ## 🏆 Success Criteria
 
 ### Minimum Requirements ✅
-- [ ] Timer Pool Management ทำงานได้
-- [ ] Performance Monitoring แสดงผลถูกต้อง
-- [ ] Health Monitoring ตรวจจับปัญหาได้
-- [ ] Stress Test ผ่านได้
+- [✅] Timer Pool Management ทำงานได้
+- [✅] Performance Monitoring แสดงผลถูกต้อง
+- [✅] Health Monitoring ตรวจจับปัญหาได้
+- [✅] Stress Test ผ่านได้
 
 ### Advanced Requirements ✅
-- [ ] Timer Accuracy > 95%
-- [ ] Callback Duration < 500μs average
-- [ ] Pool Utilization จัดการได้ดี
-- [ ] Error Recovery ทำงานได้
+- [✅] Timer Accuracy > 95%
+- [✅] Callback Duration < 500μs average
+- [✅] Pool Utilization จัดการได้ดี
+- [✅] Error Recovery ทำงานได้
 
 ### Expert Level ✅
-- [ ] Custom Optimization Strategies
-- [ ] Advanced Error Handling
-- [ ] Production-Ready Implementation
-- [ ] Performance Benchmarking
+- [✅] Custom Optimization Strategies
+- [✅] Advanced Error Handling
+- [✅] Production-Ready Implementation
+- [✅] Performance Benchmarking
 
 ---
 **หมายเหตุ**: Lab นี้เป็นการประยุกต์ใช้ Timer ในระดับผู้เชี่ยวชาญ เหมาะสำหรับการพัฒนาระบบ Production ที่ต้องการประสิทธิภาพสูงและความเสถียร
