@@ -671,7 +671,8 @@ OFF → SLOW_BLINK → FAST_BLINK → HEARTBEAT → SOS → RAINBOW → (repeat)
 3. **Network Watchdog**: ส่ง heartbeat ผ่าน network
 4. **Pattern Learning**: บันทึกและเรียนรู้ pattern ที่นิยม
 
-    - [อาจารย์ครับ โค้ดผมคอมไพล์ผ่านแล้ว แต่ตอน Flash ลงบอร์ดมันเฟลครับ ขึ้น ninja failed with exit code 1 ครับ ผมลองแก้ปัญหา Port ไม่ว่าง กับลองกดปุ่ม BOOT ค้างแล้ว แต่ก็ยังอัปโหลดไม่เข้าครับ](main/timer_applications.c)
+    ### - **รวมความท้าทายในภาพเดียว**
+    - [อาจารย์ครับ โค้ดผม Flash ผ่านแล้ว แต่พอมันรันไปถึงตอนเปิด Wi-Fi บอร์ดมันรีเซ็ตตัวเองครับ ใน Log มันฟ้องว่า Brownout detector was triggered ครับ น่าจะเป็นปัญหาไฟไม่พอ (ไฟตก) ตอน Wi-Fi กระชากไฟ ผมลองเปลี่ยนสาย USB กับที่ชาร์จแล้ว แต่ก็ยังไม่หายครับ](main/timer_applications.c)
 
 
 
