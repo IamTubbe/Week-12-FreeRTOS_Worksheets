@@ -310,6 +310,8 @@ void app_main(void)
 }
 ```
 
+![alt text](<Basic Stack Monitoring.png>)
+
 ### Step 2: Stack Overflow Detection (10 นาที)
 
 เพิ่มการตรวจจับ Stack Overflow:
@@ -338,6 +340,8 @@ void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
 // เพิ่มใน sdkconfig หรือ menuconfig:
 // CONFIG_FREERTOS_CHECK_STACKOVERFLOW=2 (ตรวจสอบแบบเต็ม)
 ```
+![alt text](<Stack Overflow Detection.png>)
+---
 
 ### Step 3: Stack Optimization (5 นาที)
 
@@ -393,6 +397,9 @@ void optimized_heavy_task(void *pvParameters)
 }
 ```
 
+![alt text](<Stack Optimization.png>)
+---
+
 ## การทดสอบและวิเคราะห์
 
 ### การสังเกต
@@ -429,6 +436,9 @@ void test_stack_sizes(void)
 }
 ```
 
+![alt text](<Exercise 1.png>)
+---
+
 ### Exercise 2: Dynamic Stack Monitoring
 
 ```c
@@ -450,13 +460,28 @@ void dynamic_stack_monitor(TaskHandle_t task_handle, const char* task_name)
 }
 ```
 
+![alt text](<Exercise 2.png>)
+
 ## คำถามสำหรับวิเคราะห์
 
 1. Task ไหนใช้ stack มากที่สุด? เพราะอะไร?
+    - Task ที่มี ตัวแปร local เยอะ, เรียกฟังก์ชันลึก, ใช้ recursion หรือ buffer ขนาดใหญ่ใน stack → เพราะทุกสิ่งที่ประกาศในฟังก์ชันจะถูกเก็บบน stack
 2. การใช้ heap แทน stack มีข้อดีอย่างไร?
+    - ยืดหยุ่นกว่า ไม่จำกัดขนาดคงที่แบบ stack
+    - ใช้สำหรับ ข้อมูลขนาดใหญ่ อยู่ได้นานเกินอายุฟังก์ชัน
 3. Stack overflow เกิดขึ้นเมื่อไหร่และทำอย่างไรป้องกัน?
+    - เกิดเมื่อ stack ใช้เกินที่กำหนด → เขียนทับ memory อื่น ✅ วิธีป้องกัน
+    - เพิ่ม stack size ให้เพียงพอ
+    - หลีกเลี่ยง recursion / ลดตัวแปร local ใหญ่ ๆ
+    - เปิด stack overflow detection ใน FreeRTOS
 4. การตั้งค่า stack size ควรพิจารณาจากอะไร?
+    - ความลึกของ call stack
+    - ปริมาณตัวแปร local
+    - ความซับซ้อนของงาน
+    - เผื่อ Safety Margin ~20–30%
 5. Recursion ส่งผลต่อ stack usage อย่างไร?
+    - ทำให้ stack เพิ่มตามจำนวนรอบเรียกตัวเอง
+    - เสี่ยงเกิด stack overflow ง่าย
 
 ## ผลการทดลองที่คาดหวัง
 
