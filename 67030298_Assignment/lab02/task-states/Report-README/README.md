@@ -299,6 +299,9 @@ void app_main(void)
 }
 ```
 
+![alt text](<Basic Task States Demo.png>)
+---
+
 ### Step 2: Advanced State Transitions (15 นาที)
 
 เพิ่มการสาธิต state transitions ที่ซับซ้อนมากขึ้น:
@@ -350,6 +353,8 @@ if (control_cycle == 150 && !external_deleted) { // 15 seconds
     external_deleted = true;
 }
 ```
+![alt text](<Advanced State Transitions.png>)
+---
 
 ### Step 3: Task State Monitoring (10 นาที)
 
@@ -389,6 +394,8 @@ void monitor_task_states(void)
 }
 ```
 
+![alt text](<Task State Monitoring.png>)
+
 ## การทดสอบและการสังเกต
 
 ### การใช้งาน
@@ -422,6 +429,9 @@ void count_state_change(eTaskState old_state, eTaskState new_state)
     }
 }
 ```
+
+![alt text](<Exercise 1.png>)
+---
 
 ### Exercise 2: Custom State Indicator
 
@@ -467,13 +477,22 @@ void update_state_display(eTaskState current_state)
 }
 ```
 
+![alt text](<Exercise 2.png>)
+
 ## คำถามสำหรับวิเคราะห์
 
 1. Task อยู่ใน Running state เมื่อไหร่บ้าง?
+    - เมื่อ Scheduler เลือก task นั้นให้ได้ CPU (priority สูงสุดใน Ready state ณ ขณะนั้น)
 2. ความแตกต่างระหว่าง Ready และ Blocked state คืออะไร?
+    - Ready: พร้อมรันทันที แต่ยังไม่ได้ CPU
+    - Blocked: รอเหตุการณ์ เช่น delay หมดเวลา, รอ semaphore, queue
 3. การใช้ vTaskDelay() ทำให้ task อยู่ใน state ใด?
+    - ทำให้ task เข้า Blocked state จนกว่าเวลาที่กำหนดจะหมด
 4. การ Suspend task ต่างจาก Block อย่างไร?
+    - Suspend: ถูกสั่งหยุดเอง ต้อง Resume เท่านั้นถึงจะกลับมา
+    - Blocked: รอ เหตุการณ์/เวลา พอเหตุการณ์เกิดขึ้นก็กลับไป Ready ได้เอง
 5. Task ที่ถูก Delete จะกลับมาได้หรือไม่?
+    - ไม่สามารถกลับมาได้ ต้อง สร้างใหม่ เท่านั้น
 
 ## ผลการทดลองที่คาดหวัง
 
