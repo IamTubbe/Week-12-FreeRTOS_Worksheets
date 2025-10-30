@@ -469,6 +469,8 @@ void app_main(void) {
 }
 ```
 
+![alt text](<การทดลอง.png>)
+
 ## 🧪 การทดลอง
 
 ### ทดลองที่ 1: System Initialization Sequence
@@ -477,11 +479,26 @@ void app_main(void) {
    - Network → Sensor → Config → Storage → System Ready
 3. สังเกตข้อความใน Serial Monitor แสดงการรอและการ synchronization
 
+    - สรุปผล:
+        - ระบบเริ่มต้นการทำงานครบทุกโมดูลในเวลา 8770 ms
+        - ลำดับการทำงานของ LED ตรงกับขั้นตอนการเริ่มต้นจริง: Network → Sensor → Config → Storage → System Ready
+        - ข้อความใน Serial Monitor แสดงการรอ synchronization ของแต่ละ subsystem อย่างครบถ้วน
+        - สถานะสุดท้าย System status: 0x0000001F หมายถึง subsystem ทั้ง 5 (Network, Sensor, Config, Storage, System) พร้อมทำงานทั้งหมด
+
 ### ทดลองที่ 2: Event Conditions Testing
 ใน Serial Monitor จะเห็น:
 - **Phase 1**: รอ Network + Config (ANY condition)
 - **Phase 2**: รอทุก subsystems (ALL condition)
 - **Event Monitor**: แสดงการตรวจสอบ events แบบต่างๆ
+
+    - สรุปผล:
+        - ช่วง Phase 1: ระบบรอ event เงื่อนไข ANY → เมื่อ subsystem ใดเกิด event ระบบจะตอบสนองทันที
+        - ช่วง Phase 2: ระบบรอ event เงื่อนไข ALL → ตรวจสอบว่าทุก subsystem ส่งสัญญาณครบ
+        - พบการตรวจจับ event ครบทุก subsystem (0x0000001F) เช่น
+            - 🌐 Network event active  
+            - 🌡️ Sensor event active  
+            - ⚙️ Config event active  
+            -       - 💾 Storage event active
 
 ### ทดลองที่ 3: System Resilience
 สังเกตการจำลอง system failures:
@@ -490,6 +507,15 @@ void app_main(void) {
 - Configuration corruption
 - Storage space warnings
 
+    - สรุปผล:
+        - ตลอดช่วง log พบว่าระบบยังคงรายงาน System Health: ✅ HEALTHY (0x0000001F)
+        - ไม่มี subsystem ใดเปลี่ยนสถานะเป็น “❌”
+        - Sensor readings แสดงค่าที่เปลี่ยนแปลงได้ตามสภาพแวดล้อม (27.5°C → 44.5°C, RH 40–74%)
+        - Storage subsystem มีการตรวจสอบพื้นที่เหลือ (free space) เป็นระยะ เช่น
+            - 1229 MB → 9652 MB → 1002 MB โดยระบบไม่เกิด error แม้ค่าเปลี่ยนแปลงมาก
+        - Network heartbeat ทำงานทุก ~5 วินาที แสดงความต่อเนื่องของการเชื่อมต่อ
+        - Configuration monitoring ทำงานเป็นรอบ ๆ โดยไม่มี “corruption” ถูกตรวจพบ
+
 ### ทดลองที่ 4: Timing Analysis
 แก้ไข delay times เพื่อทดสอบ:
 ```c
@@ -497,6 +523,8 @@ void app_main(void) {
 vTaskDelay(pdMS_TO_TICKS(5000)); // เพิ่มเป็น 5 วินาที
 // สังเกต timeout behaviors
 ```
+
+![alt text](<ทดลองที่ 4.png>)
 
 ## 📊 การวิเคราะห์ Event Patterns
 
@@ -512,6 +540,9 @@ void print_event_statistics(void) {
 }
 ```
 
+![alt text](<เพิ่ม Event Statistics.png>)
+---
+
 ### การ Debug Event States:
 ```c
 void debug_event_bits(EventBits_t bits, const char* context) {
@@ -524,27 +555,30 @@ void debug_event_bits(EventBits_t bits, const char* context) {
 }
 ```
 
+![alt text](<การ Debug Event States.png>)
+![alt text](<การ Debug Event States-monitor.png>)
+
 ## 📋 สรุปผลการทดลอง
 
 ### APIs ที่เรียนรู้:
-- [ ] `xEventGroupCreate()` - สร้าง Event Group
-- [ ] `xEventGroupSetBits()` - ตั้งค่า Event Bits
-- [ ] `xEventGroupClearBits()` - ล้าง Event Bits
-- [ ] `xEventGroupWaitBits()` - รอ Event Bits ตามเงื่อนไข
-- [ ] `xEventGroupGetBits()` - อ่านค่า Event Bits ปัจจุบัน
+- [✅] `xEventGroupCreate()` - สร้าง Event Group
+- [✅] `xEventGroupSetBits()` - ตั้งค่า Event Bits
+- [✅] `xEventGroupClearBits()` - ล้าง Event Bits
+- [✅] `xEventGroupWaitBits()` - รอ Event Bits ตามเงื่อนไข
+- [✅] `xEventGroupGetBits()` - อ่านค่า Event Bits ปัจจุบัน
 
 ### Concepts ที่เข้าใจ:
-- [ ] Event Bits และการจัดกลุ่ม
-- [ ] ANY vs ALL conditions ในการรอ
-- [ ] Event broadcasting และ synchronization
-- [ ] System initialization patterns
-- [ ] Event-driven system monitoring
+- [✅] Event Bits และการจัดกลุ่ม
+- [✅] ANY vs ALL conditions ในการรอ
+- [✅] Event broadcasting และ synchronization
+- [✅] System initialization patterns
+- [✅] Event-driven system monitoring
 
 ### Event Patterns:
-- [ ] **Initialization Sequence**: รอให้ subsystems พร้อม
-- [ ] **Health Monitoring**: ตรวจสอบสถานะระบบ
-- [ ] **Event Broadcasting**: แจ้งเตือนหลาย tasks
-- [ ] **Conditional Processing**: ประมวลผลตามเงื่อนไข
+- [✅] **Initialization Sequence**: รอให้ subsystems พร้อม
+- [✅] **Health Monitoring**: ตรวจสอบสถานะระบบ
+- [✅] **Event Broadcasting**: แจ้งเตือนหลาย tasks
+- [✅] **Conditional Processing**: ประมวลผลตามเงื่อนไข
 
 ## 🚀 ความท้าทายเพิ่มเติม
 
@@ -553,6 +587,11 @@ void debug_event_bits(EventBits_t bits, const char* context) {
 3. **Dynamic Events**: สร้าง events แบบ dynamic
 4. **Event Correlation**: วิเคราะห์ความสัมพันธ์ของ events
 5. **Performance Optimization**: ปรับแต่ง event handling
+
+    ### - **รวมความท้าทาย**
+
+![alt text](<ความท้าทายเพิ่มเติม.png>)
+![alt text](<ความท้าทายเพิ่มเติม-1.png>)
 
 ## 🔧 Advanced Features
 
