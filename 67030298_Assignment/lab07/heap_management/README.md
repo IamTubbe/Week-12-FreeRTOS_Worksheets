@@ -756,8 +756,6 @@ void batch_free(memory_batch_t* batch) {
 4. **Memory Encryption**: เพิ่ม encryption สำหรับ sensitive data
 5. **Dynamic Memory Pools**: สร้าง memory pools ที่ปรับขนาดได้
 
-    - [โค้ดรวมความท้าทายเพิ่มเติม : heap_management.c](main/heap_management.c)
-
 ## 🎯 Tips สำหรับการใช้งานจริง
 
 ### Memory Allocation Best Practices:
