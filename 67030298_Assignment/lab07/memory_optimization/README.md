@@ -707,6 +707,8 @@ void app_main(void) {
 }
 ```
 
+![alt text](การทดลอง.png)
+
 ## 🧪 การทดลอง
 
 ### ทดลองที่ 1: Static vs Dynamic Allocation
@@ -714,20 +716,28 @@ void app_main(void) {
 2. ติดตาม allocation performance differences
 3. วิเคราะห์ memory predictability
 
+![alt text](<ทดลองที่ 1.png>)
+
 ### ทดลองที่ 2: Memory Alignment
 1. สังเกต LED_ALIGNMENT_OPT เมื่อทำ alignment
 2. ดู performance improvements ใน benchmark
 3. ทดสอบ cache-friendly access patterns
+
+![alt text](<ทดลองที่ 2.png>)
 
 ### ทดลองที่ 3: Struct Optimization
 1. สังเกต LED_PACKING_OPT และ memory savings
 2. วิเคราะห์ struct size differences
 3. คำนวณ memory waste reduction
 
+![alt text](<ทดลองที่ 3.png>)
+
 ### ทดลองที่ 4: Memory Region Analysis
 1. ดู memory region utilization reports
 2. ติดตาม fragmentation levels
 3. วิเคราะห์ memory type usage patterns
+
+![alt text](<ทดลองที่ 4.png>)
 
 ## 📊 การวิเคราะห์ Optimization Results
 
@@ -762,6 +772,8 @@ void calculate_optimization_impact(void) {
 }
 ```
 
+![alt text](<Memory Savings Calculator.png>)
+
 ## 🔧 Advanced Optimization Techniques
 
 ### Memory Pool with Template Sizes:
@@ -795,21 +807,23 @@ void* template_malloc(size_t size) {
 }
 ```
 
+![alt text](<Memory Pool with Template Sizes.png>)
+
 ## 📋 สรุปผลการทดลอง
 
 ### Memory Optimization Concepts:
-- [ ] **Static vs Dynamic**: การเปรียบเทียบ allocation strategies
-- [ ] **Memory Alignment**: การปรับ alignment เพื่อประสิทธิภาพ
-- [ ] **Struct Packing**: การลด memory waste จาก padding
-- [ ] **Access Patterns**: การปรับแต่ง memory access สำหรับ cache
-- [ ] **Region Analysis**: การวิเคราะห์ memory regions และ utilization
+- [✅] **Static vs Dynamic**: การเปรียบเทียบ allocation strategies
+- [✅] **Memory Alignment**: การปรับ alignment เพื่อประสิทธิภาพ
+- [✅] **Struct Packing**: การลด memory waste จาก padding
+- [✅] **Access Patterns**: การปรับแต่ง memory access สำหรับ cache
+- [✅] **Region Analysis**: การวิเคราะห์ memory regions และ utilization
 
 ### Optimization Skills:
-- [ ] **Performance Profiling**: การวัดและวิเคราะห์ performance
-- [ ] **Memory Layout Design**: การออกแบบ memory layout
-- [ ] **Cache Optimization**: การปรับแต่งสำหรับ cache efficiency
-- [ ] **Resource Planning**: การวางแผนการใช้ memory resources
-- [ ] **Trade-off Analysis**: การวิเคราะห์ trade-offs ระหว่าง techniques
+- [✅] **Performance Profiling**: การวัดและวิเคราะห์ performance
+- [✅] **Memory Layout Design**: การออกแบบ memory layout
+- [✅] **Cache Optimization**: การปรับแต่งสำหรับ cache efficiency
+- [✅] **Resource Planning**: การวางแผนการใช้ memory resources
+- [✅] **Trade-off Analysis**: การวิเคราะห์ trade-offs ระหว่าง techniques
 
 ## 🚀 ความท้าทายเพิ่มเติม
 
