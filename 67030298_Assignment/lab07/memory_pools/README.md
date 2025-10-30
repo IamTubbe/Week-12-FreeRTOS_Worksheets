@@ -842,6 +842,9 @@ void app_main(void) {
 }
 ```
 
+![alt text](<การทดลอง.png>)
+![alt text](<การทดลอง-1.png>)
+
 ## 🧪 การทดลอง
 
 ### ทดลองที่ 1: Pool Selection
@@ -849,20 +852,30 @@ void app_main(void) {
 2. ติดตาม smart allocation ใน Serial Monitor
 3. วิเคราะห์การเลือก pool ที่เหมาะสม
 
+![alt text](<ทดลองที่ 1.png>)
+---
+
 ### ทดลองที่ 2: Performance Comparison
 1. ดู benchmark results เปรียบเทียบ pool vs heap
 2. วิเคราะห์ allocation/deallocation times
 3. สังเกต performance benefits ของ pools
+
+![alt text](<ทดลองที่ 2.png>)
+---
 
 ### ทดลองที่ 3: Pool Visualization
 1. ดู usage bar visualization ใน logs
 2. ติดตาม pool utilization patterns
 3. สังเกต peak usage และ fragmentation
 
+![alt text](<ทดลองที่ 3.png>)
+
 ### ทดลองที่ 4: Corruption Detection
 1. สังเกต LED_POOL_ERROR เมื่อมี corruption
 2. ดู integrity check results
 3. ทดสอب pattern verification
+
+![alt text](<ทดลองที่ 4.png>)
 
 ## 📊 การวิเคราะห์ Pool Performance
 
@@ -892,6 +905,8 @@ void analyze_pool_efficiency(void) {
     }
 }
 ```
+
+![alt text](<Pool Efficiency Metrics.png>)
 
 ## 🔧 Advanced Pool Features
 
@@ -938,21 +953,23 @@ void balance_pool_loads(void) {
 }
 ```
 
+![alt text](<การสร้าง Dynamic Pool Resizing.png>)
+
 ## 📋 สรุปผลการทดลอง
 
 ### Memory Pool Concepts:
-- [ ] **Fixed-size Allocation**: การจัดสรร memory แบบขนาดคงที่
-- [ ] **Fast O(1) Operations**: allocation/deallocation ใน constant time
-- [ ] **Fragmentation Prevention**: การป้องกัน external fragmentation
-- [ ] **Multi-tier Pools**: การใช้ pools หลายขนาด
-- [ ] **Smart Pool Selection**: การเลือก pool อัตโนมัติ
+- [✅] **Fixed-size Allocation**: การจัดสรร memory แบบขนาดคงที่
+- [✅] **Fast O(1) Operations**: allocation/deallocation ใน constant time
+- [✅] **Fragmentation Prevention**: การป้องกัน external fragmentation
+- [✅] **Multi-tier Pools**: การใช้ pools หลายขนาด
+- [✅] **Smart Pool Selection**: การเลือก pool อัตโนมัติ
 
 ### Pool Management Skills:
-- [ ] **Pool Design**: การออกแบบ pool structure
-- [ ] **Performance Optimization**: การปรับแต่ง performance
-- [ ] **Corruption Detection**: การตรวจจับ memory corruption
-- [ ] **Usage Monitoring**: การติดตาม pool utilization
-- [ ] **Load Balancing**: การกระจายโหลดระหว่าง pools
+- [✅] **Pool Design**: การออกแบบ pool structure
+- [✅] **Performance Optimization**: การปรับแต่ง performance
+- [✅] **Corruption Detection**: การตรวจจับ memory corruption
+- [✅] **Usage Monitoring**: การติดตาม pool utilization
+- [✅] **Load Balancing**: การกระจายโหลดระหว่าง pools
 
 ## 🚀 ความท้าทายเพิ่มเติม
 
