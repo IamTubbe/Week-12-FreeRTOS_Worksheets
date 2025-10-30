@@ -801,6 +801,8 @@ void app_main(void) {
 }
 ```
 
+![alt text](การทดลอง.png)
+
 ## 🧪 การทดลอง
 
 ### ทดลองที่ 1: Pattern Recognition
@@ -808,20 +810,28 @@ void app_main(void) {
 2. ติดตาม LED changes ตาม detected patterns
 3. วิเคราะห์ event correlation และ timing
 
+![alt text](<ทดลองที่ 1.png>)
+
 ### ทดลองที่ 2: State Machine Behavior
 1. สังเกตการเปลี่ยน home states
 2. ติดตาม state transitions ใน logs
 3. ทดสอบ emergency mode activation
+
+![alt text](<ทดลองที่ 2.png>)
 
 ### ทดลองที่ 3: Adaptive Learning
 1. สังเกตการปรับ motion sensitivity
 2. ติดตาม pattern confidence changes
 3. วิเคราะห์ learning behavior ในระยะยาว
 
+![alt text](<ทดลองที่ 3.png>)
+
 ### ทดลองที่ 4: Real-world Scenarios
 1. จำลอง "leaving home" scenario
 2. ทดสอบ "break-in detection"
 3. สังเกต "goodnight routine" automation
+
+![alt text](<ทดลองที่ 4.png>)
 
 ## 📊 Advanced Event Analysis
 
@@ -851,6 +861,9 @@ void analyze_pattern_performance(void) {
 }
 ```
 
+![alt text](<เพิ่ม Event Correlation Metrics.png>)
+---
+
 ### Event Sequence Visualization:
 ```c
 void print_event_sequence(void) {
@@ -871,21 +884,23 @@ void print_event_sequence(void) {
 }
 ```
 
+![alt text](<Event Sequence Visualization.png>)
+
 ## 📋 สรุปผลการทดลอง
 
 ### Complex Event Concepts:
-- [ ] **Event-driven State Machine**: การควบคุม state machine ด้วย events
-- [ ] **Pattern Recognition**: การจดจำ patterns ของ events
-- [ ] **Event Correlation**: การเชื่อมโยง events หลายตัว
-- [ ] **Adaptive Behavior**: การปรับพฤติกรรมตาม patterns
-- [ ] **Real-time Analysis**: การวิเคราะห์ events แบบ real-time
+- [✅] **Event-driven State Machine**: การควบคุม state machine ด้วย events
+- [✅] **Pattern Recognition**: การจดจำ patterns ของ events
+- [✅] **Event Correlation**: การเชื่อมโยง events หลายตัว
+- [✅] **Adaptive Behavior**: การปรับพฤติกรรมตาม patterns
+- [✅] **Real-time Analysis**: การวิเคราะห์ events แบบ real-time
 
 ### Smart Home Patterns:
-- [ ] **Normal Entry**: การเข้าบ้านปกติ
-- [ ] **Security Breach**: การตรวจจับผู้บุกรุก
-- [ ] **Daily Routines**: การจดจำ routines ประจำวัน
-- [ ] **Environmental Response**: การตอบสนองต่อสิ่งแวดล้อม
-- [ ] **Emergency Handling**: การจัดการเหตุฉุกเฉิน
+- [✅] **Normal Entry**: การเข้าบ้านปกติ
+- [✅] **Security Breach**: การตรวจจับผู้บุกรุก
+- [✅] **Daily Routines**: การจดจำ routines ประจำวัน
+- [✅] **Environmental Response**: การตอบสนองต่อสิ่งแวดล้อม
+- [✅] **Emergency Handling**: การจัดการเหตุฉุกเฉิน
 
 ## 🚀 ความท้าทายเพิ่มเติม
 
@@ -894,6 +909,10 @@ void print_event_sequence(void) {
 3. **Mobile App Integration**: เชื่อมต่อกับ mobile app
 4. **Cloud Analytics**: ส่งข้อมูลไป cloud สำหรับวิเคราะห์
 5. **Multi-home Coordination**: ประสานงานระหว่างหลายบ้าน
+
+    ### - **รวมความท้าทายในภาพเดียว**
+
+    [โค้ด complex_event_patterns.c คอมไพล์ผ่านแล้วครับ แต่อุปกรณ์ติด Brownout Error (ไฟไม่พอ) ตอนเริ่มต่อ Wi-Fi ทำให้บอร์ดรีสตาร์ท](main/complex_event_patterns.c)
 
 ## 🎯 Real-world Applications
 
