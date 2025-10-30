@@ -642,6 +642,8 @@ void app_main(void) {
 }
 ```
 
+![alt text](<การทดลอง.png>)
+
 ## 🧪 การทดลอง
 
 ### ทดลองที่ 1: Barrier Synchronization
@@ -649,20 +651,51 @@ void app_main(void) {
 2. ใน Serial Monitor ดู synchronization times
 3. สังเกตการรอคอยของ workers ที่มาถึง barrier เร็วกว่า
 
+    - สิ่งที่เกิดขึ้น:
+        - Workers ทั้ง 3 ตัว (Worker 1–3) เข้าสู่ barrier ในรอบ Cycle 5
+        - มีการรอคอยที่ต่างกัน เช่น
+            - Worker 1 waited ~9990 ms
+            - Worker 2 waited ~8870 ms
+            - Worker 3 waited ~6370 ms
+        - เมื่อครบทุก worker → 🎯 Barrier passed! ทั้งระบบเข้าสู่ “Synchronized work phase”
+        - LED_BARRIER_SYNC (ถ้ามีต่ออยู่) ควรกะพริบสั้น ๆ เมื่อผ่าน barrier สำเร็จ
+
 ### ทดลองที่ 2: Pipeline Processing  
 1. สังเกต LEDs ของแต่ละ stage เปิดตามลำดับ
 2. ติดตาม pipeline data flow ใน Serial Monitor
 3. สังเกต throughput และ processing times
+
+    - สิ่งที่เห็นจาก Serial Monitor:
+        - ข้อมูลไหลผ่าน Stage 0 → Stage 3 อย่างต่อเนื่อง
+            - Stage 0: Input + Validation
+            - Stage 1: Processing
+            - Stage 2: Filtering/Validation
+            - Stage 3: Output/Delivery
+        - Pipeline IDs ที่สำเร็จ: 10, 11, 12, 13
+        - เวลาทำงานเฉลี่ย (Avg pipeline time: ~2891 ms)
+        - Quality เฉลี่ย ~80–88%
 
 ### ทดลองที่ 3: Workflow Management
 1. สังเกต LED_WORKFLOW_ACTIVE เมื่อมี workflow ทำงาน
 2. ติดตาม approval process และ resource availability
 3. สังเกต workflow queuing และ retry mechanisms
 
+    - สิ่งที่เกิดขึ้น:
+        - ระบบสร้างและจัดการ workflow หลายรายการ เช่น
+            - ID 6: Performance Test (ต้องอนุมัติ)
+            - ID 8: Performance Test (ไม่ต้องอนุมัติ)
+            - ID 9: Security Scan
+            - ID 10: Quality Analysis
+            - ID 7: Security Scan (retry)
+        - พบเหตุการณ์ approval ทั้ง granted และ denied
+        - มีการจัดคิวและ retry เมื่อตรวจพบ “quality check failed”
+
 ### ทดลองที่ 4: System Performance
 1. ดูสถิติการ synchronization ทุก 15 วินาที
 2. วิเคราะห์ event group states
 3. ติดตาม memory usage และ system health
+
+![alt text](<ทดลองที่ 4.png>)
 
 ## 📊 การวิเคราะห์ Synchronization Patterns
 
@@ -695,6 +728,9 @@ void analyze_synchronization_patterns(void) {
 }
 ```
 
+![alt text](<เพิ่ม Advanced Monitoring.png>)
+---
+
 ### Performance Tuning:
 ```c
 // ปรับแต่ง task priorities สำหรับ optimal performance
@@ -705,20 +741,22 @@ void analyze_synchronization_patterns(void) {
 #define RESOURCE_MANAGER_PRIORITY 6
 ```
 
+![alt text](<Performance Tuning.png>)
+
 ## 📋 สรุปผลการทดลอง
 
 ### Advanced Synchronization Concepts:
-- [ ] **Barrier Synchronization**: การรอให้ทุก tasks ถึงจุดเดียวกัน
-- [ ] **Pipeline Processing**: การประมวลผลแบบขั้นตอน
-- [ ] **Workflow Dependencies**: การจัดการ dependencies ระหว่างงาน
-- [ ] **Resource Coordination**: การประสานงานการใช้ทรัพยากร
-- [ ] **Multi-stage Events**: การจัดการ events หลายระดับ
+- [✅] **Barrier Synchronization**: การรอให้ทุก tasks ถึงจุดเดียวกัน
+- [✅] **Pipeline Processing**: การประมวลผลแบบขั้นตอน
+- [✅] **Workflow Dependencies**: การจัดการ dependencies ระหว่างงาน
+- [✅] **Resource Coordination**: การประสานงานการใช้ทรัพยากร
+- [✅] **Multi-stage Events**: การจัดการ events หลายระดับ
 
 ### Synchronization Patterns:
-- [ ] **Producer-Consumer with Events**: ใช้ events ควบคุม production/consumption
-- [ ] **Multi-phase Initialization**: การเริ่มต้นระบบหลายเฟส
-- [ ] **Conditional Workflow**: workflow ตามเงื่อนไข
-- [ ] **Event-driven State Machine**: state machine ควบคุมด้วย events
+- [✅] **Producer-Consumer with Events**: ใช้ events ควบคุม production/consumption
+- [✅] **Multi-phase Initialization**: การเริ่มต้นระบบหลายเฟส
+- [✅] **Conditional Workflow**: workflow ตามเงื่อนไข
+- [✅] **Event-driven State Machine**: state machine ควบคุมด้วย events
 
 ## 🚀 ความท้าทายเพิ่มเติม
 
@@ -727,6 +765,10 @@ void analyze_synchronization_patterns(void) {
 3. **Fault-tolerant Synchronization**: จัดการ task failures
 4. **Load-balanced Processing**: กระจายโหลดแบบ dynamic
 5. **Cross-group Synchronization**: synchronization ระหว่าง event groups
+
+    ### - **รวมความท้าทายในภาพเดียว**
+
+![alt text](<ความท้าทายเพิ่มเติม.png>)
 
 ## 🔧 Advanced Configurations
 
