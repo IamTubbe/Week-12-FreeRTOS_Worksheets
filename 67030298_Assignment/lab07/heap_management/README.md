@@ -602,6 +602,8 @@ void app_main(void) {
 }
 ```
 
+![alt text](การทดลอง.png)
+
 ## 🧪 การทดลอง
 
 ### ทดลองที่ 1: Memory Allocation Types
@@ -609,20 +611,30 @@ void app_main(void) {
 2. ติดตาม internal RAM vs SPIRAM usage
 3. วิเคราะห์ performance differences
 
+![alt text](<ทดลองที่ 1.png>)
+---
+
 ### ทดลองที่ 2: Memory Monitoring
 1. ดู memory statistics ใน Serial Monitor
 2. ติดตาม allocation/deallocation patterns
 3. สังเกต peak memory usage
 
+![alt text](<ทดลองที่ 2.png>)
+---
 ### ทดลองที่ 3: Fragmentation Analysis
 1. สังเกต LED_FRAGMENTATION เมื่อมี fragmentation สูง
 2. วิเคราะห์ fragmentation patterns
 3. ดูผลกระทบต่อ largest free block
 
+![alt text](<ทดลองที่ 3.png>)
+---
+
 ### ทดลองที่ 4: Memory Leak Detection
 1. ติดตาม potential memory leaks
 2. สังเกต LED_MEMORY_ERROR เมื่อมี leaks
 3. วิเคราะห์ allocation ages
+
+![alt text](<ทดลองที่ 4.png>)
 
 ## 📊 การวิเคราะห์ผลลัพธ์
 
@@ -666,6 +678,8 @@ void analyze_allocation_patterns(void) {
     }
 }
 ```
+
+![alt text](<Memory Usage Patterns.png>)
 
 ## 🔧 Advanced Memory Operations
 
@@ -716,21 +730,23 @@ void batch_free(memory_batch_t* batch) {
 }
 ```
 
+![alt text](<การจัดการ Memory แบบ Batch.png>)
+
 ## 📋 สรุปผลการทดลอง
 
 ### Heap Management Concepts:
-- [ ] **Dynamic Allocation**: การใช้ malloc/free และ heap_caps APIs
-- [ ] **Memory Types**: Internal RAM, SPIRAM, DMA-capable memory
-- [ ] **Memory Monitoring**: การติดตาม memory usage แบบ real-time
-- [ ] **Leak Detection**: การหา memory leaks และ unfreed allocations
-- [ ] **Fragmentation Analysis**: การวิเคราะห์และป้องกัน fragmentation
+- [✅] **Dynamic Allocation**: การใช้ malloc/free และ heap_caps APIs
+- [✅] **Memory Types**: Internal RAM, SPIRAM, DMA-capable memory
+- [✅] **Memory Monitoring**: การติดตาม memory usage แบบ real-time
+- [✅] **Leak Detection**: การหา memory leaks และ unfreed allocations
+- [✅] **Fragmentation Analysis**: การวิเคราะห์และป้องกัน fragmentation
 
 ### Memory Management Skills:
-- [ ] **Allocation Strategies**: การเลือก memory type ที่เหมาะสม
-- [ ] **Performance Analysis**: การวัด memory access performance
-- [ ] **Debugging Techniques**: การใช้เครื่องมือ debug memory issues
-- [ ] **Resource Tracking**: การติดตาม memory resources
-- [ ] **Error Handling**: การจัดการกับ allocation failures
+- [✅] **Allocation Strategies**: การเลือก memory type ที่เหมาะสม
+- [✅] **Performance Analysis**: การวัด memory access performance
+- [✅] **Debugging Techniques**: การใช้เครื่องมือ debug memory issues
+- [✅] **Resource Tracking**: การติดตาม memory resources
+- [✅] **Error Handling**: การจัดการกับ allocation failures
 
 ## 🚀 ความท้าทายเพิ่มเติม
 
@@ -739,6 +755,8 @@ void batch_free(memory_batch_t* batch) {
 3. **Shared Memory**: สร้างระบบ shared memory ระหว่าง tasks
 4. **Memory Encryption**: เพิ่ม encryption สำหรับ sensitive data
 5. **Dynamic Memory Pools**: สร้าง memory pools ที่ปรับขนาดได้
+
+    - [โค้ดรวมความท้าทายเพิ่มเติม : heap_management.c](main/heap_management.c)
 
 ## 🎯 Tips สำหรับการใช้งานจริง
 
